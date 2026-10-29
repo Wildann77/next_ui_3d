@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+@theme {
+  /* OKLCH Color Tokens */
+  --color-obsidian: oklch(14.5% 0 0);
+  --color-industrial-sage: oklch(29.2% 0.018 135);
+  --color-editorial-bone: oklch(94.1% 0.019 82);
+  --color-terracotta-volt: oklch(66.5% 0.225 38);
+
+  /* Hairline Borders */
+  --color-hairline-dark: rgba(243, 236, 225, 0.14);
+  --color-hairline-light: rgba(14, 14, 14, 0.16);
+
+  /* Typography Tokens */
+  --font-display: var(--font-syne), "Syne", sans-serif;
+  --font-sans: var(--font-neue-montreal), "Neue Montreal", system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), "JetBrains Mono", monospace;
+
+  /* Easing Curves */
+  --ease-expo-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-brutalist: cubic-bezier(0.85, 0, 0.15, 1);
+}
+
+/* Brutalist 1px Grid Cell Utility */
+@utility brutalist-cell {
+  border-right: 1px solid var(--border-current, rgba(243, 236, 225, 0.14));
+  border-bottom: 1px solid var(--border-current, rgba(243, 236, 225, 0.14));
+  position: relative;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@utility animate-marquee {
+  animation: marquee 28s linear infinite;
+  will-change: transform;
+}
+
+:root {
+  --background: var(--color-obsidian);
+  --foreground: var(--color-editorial-bone);
+  --border-current: var(--color-hairline-dark);
+}
+
+html {
+  background-color: var(--color-obsidian);
+  color: var(--color-editorial-bone);
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-color: transparent;
+  color: inherit;
+  overflow-x: hidden;
+}
+
+::selection {
+  background-color: var(--color-terracotta-volt);
+  color: var(--color-obsidian);
+}
+
+/* Accessibility & Focus-Visible Standards */
+:focus-visible {
+  outline: 2px solid var(--color-terracotta-volt) !important;
+  outline-offset: 2px !important;
+}
+
+/* Reduced Motion Override for Accessibility (WCAG AAA) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
