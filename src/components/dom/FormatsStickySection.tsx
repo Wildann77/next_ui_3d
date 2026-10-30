@@ -46,11 +46,11 @@ export default function FormatsStickySection() {
     if (!isLoaded || !sectionRef.current) return;
 
     const ctx = gsap.context(() => {
-      // 1. Background Theme Transition: Sage/Dark <-> Editorial Bone
+      // 1. Background Theme Transition: Obsidian <-> Editorial Bone
       ScrollTrigger.create({
         trigger: sectionRef.current,
         start: "top 60%",
-        end: "bottom 40%",
+        end: "bottom 50%",
         onEnter: () => {
           setActiveTheme("light");
           gsap.to(document.body, {
@@ -60,9 +60,25 @@ export default function FormatsStickySection() {
           });
         },
         onLeaveBack: () => {
-          setActiveTheme("sage");
+          setActiveTheme("dark");
           gsap.to(document.body, {
-            backgroundColor: "oklch(29.2% 0.018 135)",
+            backgroundColor: "oklch(14.5% 0 0)",
+            duration: 0.8,
+            ease: "power2.out",
+          });
+        },
+        onEnterBack: () => {
+          setActiveTheme("light");
+          gsap.to(document.body, {
+            backgroundColor: "oklch(94.1% 0.019 82)",
+            duration: 0.8,
+            ease: "power2.out",
+          });
+        },
+        onLeave: () => {
+          setActiveTheme("dark");
+          gsap.to(document.body, {
+            backgroundColor: "oklch(14.5% 0 0)",
             duration: 0.8,
             ease: "power2.out",
           });

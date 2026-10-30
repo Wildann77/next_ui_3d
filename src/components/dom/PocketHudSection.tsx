@@ -59,6 +59,22 @@ export default function PocketHudSection() {
             ease: "power2.out",
           });
         },
+        onEnterBack: () => {
+          setActiveTheme("dark");
+          gsap.to(document.body, {
+            backgroundColor: "oklch(14.5% 0 0)",
+            duration: 0.8,
+            ease: "power2.out",
+          });
+        },
+        onLeave: () => {
+          setActiveTheme("dark");
+          gsap.to(document.body, {
+            backgroundColor: "oklch(14.5% 0 0)",
+            duration: 0.8,
+            ease: "power2.out",
+          });
+        },
       });
     }, sectionRef);
 
@@ -79,7 +95,7 @@ export default function PocketHudSection() {
     <section
       ref={sectionRef}
       id="system"
-      className="w-full relative py-28 border-t border-[var(--color-hairline-dark)] text-[var(--color-editorial-bone)]"
+      className="w-full relative py-28 border-t border-[var(--color-hairline-dark)] text-[var(--color-editorial-bone)] transition-colors duration-700"
     >
       <GridCrosshair position="top-left" />
       <GridCrosshair position="top-right" />
